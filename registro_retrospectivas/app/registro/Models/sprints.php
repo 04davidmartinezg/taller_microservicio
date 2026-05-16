@@ -1,9 +1,9 @@
 <?php
-namespace App\Contactos\Models;
+namespace app\registro\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class sprint extends Model {
+class sprints extends Model {
 
     protected $table = 'sprints';
     public $timestamps = false;

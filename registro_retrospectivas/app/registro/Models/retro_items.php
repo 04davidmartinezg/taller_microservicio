@@ -1,5 +1,5 @@
 <?php
-namespace App\Contactos\Models;
+namespace app\registro\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

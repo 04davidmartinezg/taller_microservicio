@@ -1,43 +1,41 @@
 <?php
-namespace app\registro\Controllers;
-use app\registro\Models\sprints;
+namespace app\registro\Controller;
+
 use Exception;
-class SprintController {
+use app\registro\Models\sprints; 
 
-    function getsprint(){
-        $rows = sprints::all();
-        return $rows->toJson();
-    }
-    
-    function guardarSprint($data){
-        $sprint = new sprints();
-        $sprint->nombre = $data['nombre'];
-        $sprint->fecha_inicio  = $data['fecha_inicio'];
-        $sprint->fecha_fin  = $data['fecha_fin'];
-        $sprint->save();
-        return $sprint->toJson();
-    }
-
-    function getSprint($id){
-        $sprint = sprints::find($id);
-        if(empty($sprint)){
-            throw new Exception("El sprint $id no existe", 1);
+class SprintController 
+{
+    public function getSprint(): string 
+    {
+        try {
+            $sprints = sprints::orderBy('id', 'desc')->get();
+            return json_encode($sprints);
+        } catch (Exception $e) {
+            return json_encode(["status" => "error", "message" => $e->getMessage()]);
         }
-        return $sprint;
     }
 
-    function modificarSprint($id, $data){
-        $sprint = $this->getSprint($id);
-        $sprint->nombre = $data['nombre'];
-        $sprint->fecha_inicio = $data['fecha_inicio'];
-        $sprint->fecha_fin = $data['fecha_fin'];
-        $sprint->save();
-        return $sprint;
-    }
+    public function guardarSprint(array $data): string 
+    {
+        try {
+            if (!isset($data['nombre']) || !isset($data['fecha_inicio']) || !isset($data['fecha_fin'])) {
+                throw new Exception("Los campos 'nombre', 'fecha_inicio' y 'fecha_fin' son obligatorios.");
+            }
+            $nuevoSprint = new sprints();
+            $nuevoSprint->nombre = $data['nombre'];
+            $nuevoSprint->fecha_inicio = $data['fecha_inicio'];
+            $nuevoSprint->fecha_fin = $data['fecha_fin'];
+            $nuevoSprint->save();
 
-    function borrarSprint($id){
-        $sprint = $this->getSprint($id);
-        $sprint->delete();
+            return json_encode([
+                "status" => "success",
+                "mensaje" => "Sprint creado exitosamente",
+                "sprint" => $nuevoSprint
+            ]);
+
+        } catch (Exception $e) {
+            return json_encode(["status" => "error", "message" => $e->getMessage()]);
+        }
     }
 }
-?>
