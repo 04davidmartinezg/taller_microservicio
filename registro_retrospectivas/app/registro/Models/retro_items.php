@@ -1,5 +1,5 @@
 <?php
-namespace app\registro\Models;
+namespace App\registro\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

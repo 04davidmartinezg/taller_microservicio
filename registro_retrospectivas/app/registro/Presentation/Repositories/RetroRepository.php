@@ -1,5 +1,5 @@
 <?php 
-namespace app\registro\Presentation\Repositories; 
+namespace App\registro\Presentation\Repositories; 
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;

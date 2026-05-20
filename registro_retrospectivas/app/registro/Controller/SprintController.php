@@ -1,8 +1,7 @@
 <?php
-namespace app\registro\Controller;
-
+namespace App\registro\Controller;
+use App\registro\Models\sprints; 
 use Exception;
-use app\registro\Models\sprints; 
 
 class SprintController 
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\registro\Controller;
+namespace App\registro\Controller;
 
 use app\registro\Models\retro_items;
 use app\registro\Models\sprints;

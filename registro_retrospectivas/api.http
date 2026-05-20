@@ -1,52 +1,63 @@
-### 1. Crear un nuevo Sprint
+### APIS DE SPRINTS
+
+### consultar todos los sprints
+GET http://127.0.0.1:8000/sprint
+
+### consultar sprint
+GET http://127.0.0.1:8000/sprint/1
+
+### crear sprint
 POST http://127.0.0.1:8000/sprint
 Content-Type: application/json
 
 {
-  "nombre": "Sprint 1: Configuración e Interfaces",
-  "fecha_inicio": "2026-05-18",
-  "fecha_fin": "2026-05-29"
+    "nombre": "Sprint 1: Configuración e Interfaces",
+    "fecha_inicio": "2026-05-18",
+    "fecha_fin": "2026-05-29"
 }
 
-###
+### modificar sprint
+PUT http://127.0.0.1:8000/sprint/1
+Content-Type: application/json
 
-### 2. Consultar todos los Sprints
-GET http://127.0.0.1:8000/sprint
+{
+    "nombre": "Sprint 1: Interfaces Modificadas",
+    "fecha_inicio": "2026-05-18",
+    "fecha_fin": "2026-06-05"
+}
 
-###
+### borrar sprint
+DELETE http://127.0.0.1:8000/sprint/1
 
-### 3. Crear un ítem en la retrospectiva (Logro, Impedimento o Acción)
+### APIS DE RETROSPECTIVAS (RETRO ITEMS)
+
+### consultar todos los items de retrospectiva
+GET http://127.0.0.1:8000/retro_items
+
+### consultar historial global de items
+GET http://127.0.0.1:8000/retro_items/historial
+
+### visualizar la pizarra de un sprint específico
+GET http://127.0.0.1:8000/retro_items/sprint/1
+
+### crear item de retrospectiva (logro, impedimento o accion)
 POST http://127.0.0.1:8000/retro_items
 Content-Type: application/json
 
 {
-  "sprint_id": 1,
-  "categoria": "logro",
-  "descripcion": "Logramos desplegar el primer microservicio a tiempo."
+    "sprint_id": 1,
+    "categoria": "logro",
+    "descripcion": "Logramos desplegar el primer microservicio a tiempo."
 }
 
-###
-
-### 4. Visualizar la pizarra completa de un Sprint (Sprints + Acciones anteriores)
-GET http://127.0.0.1:8000/retro_items/sprint/1
-
-###
-
-### 5. Consultar el historial global de todos los ítems
-GET http://127.0.0.1:8000/retro_items
-
-###
-
-### 6. Actualizar un ítem (Modificar texto o marcar acción como cumplida)
+### modificar item de retrospectiva
 PUT http://127.0.0.1:8000/retro_items/1
 Content-Type: application/json
 
 {
-  "descripcion": "Logramos desplegar el primer microservicio a tiempo (Editado)",
-  "cumplida": 1
+    "descripcion": "Logramos desplegar el primer microservicio a tiempo (Editado)",
+    "cumplida": 1
 }
 
-###
-
-### 7. Eliminar un ítem de la retrospectiva
+### borrar item de retrospectiva
 DELETE http://127.0.0.1:8000/retro_items/1

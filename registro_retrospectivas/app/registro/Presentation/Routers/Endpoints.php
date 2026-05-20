@@ -1,7 +1,7 @@
 <?php
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
-use app\registro\Presentation\Repositories\SprintRepository;
+use App\registro\Presentation\Repositories\SprintRepository;
 use app\registro\Presentation\Repositories\RetroRepository;
 return function (App $app) {
     $app->group('/sprint', function (RouteCollectorProxy $group) {
